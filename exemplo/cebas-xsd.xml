@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://capes.gov.br/diplomadigital/stricto" 
+xmlns:dip="http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd" 
+xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+targetNamespace="http://capes.gov.br/diplomadigital/stricto" 
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+    <xs:include schemaLocation="leiauteDiplomaDigitalStricto_v1.00.xsd" />
+    <xs:import namespace="http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd" schemaLocation="graduacao/leiauteHistoricoEscolar_v1.04.xsd" />
+    <xs:element name="DocumentoRegistroCEBAS" type="TDocumentoRegistroCEBAS">
+        <xs:annotation>
+            <xs:documentation> Certificação CEBAS </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="TDocumentoRegistroCEBAS">
+        <xs:annotation>
+            <xs:documentation> Registro CEBAS </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="InfDocumentoRegistroCEBAS" type="TInfDocumentoRegistroCEBAS" />
+            <xs:element ref="ds:Signature" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TInfDocumentoRegistroCEBAS">
+        <xs:annotation>
+            <xs:documentation> Informações de Registro CEBAS </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="NumeroCEBAS" type="dip:TNumeroPositivo" />
+            <xs:choice>
+                <xs:element name="IesRegistradora" type="dip:TDadosIesRegistradora" />
+                <xs:element name="IesEmissora" type="dip:TDadosIesEmissora" />
+            </xs:choice>
+            <xs:element name="DataValidade" type="dip:TData" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
